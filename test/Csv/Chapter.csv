@@ -1,0 +1,21 @@
+章节ID,章节标题,章节名称,章节描述,章节图片,下一章节,拥有关卡,章节原点,章节范围,分类(1—主线; 2--活动),解锁的主城等级,排序,分页图标,敌方部队,备注
+chapter_id,chapter_title,chapter_name,chapter_desc,chapter_pic,chapter_next,chapter_owner,chapter_point,chapter_range,entry_type,home_level,index,enter_icon,enemy_type,comment
+key,client,client,client,client,all,all,all,all,all,all,client,client,client,comment
+uint,lang,lang,lang,string,int,array<int>,array<int>,array<int>,string,int,int,string,array<string>,string
+1,[b]第1章[-],纳尔维克战役,,Battlemapbg_9,2,101;102;103;104;105;106;107;108;109;110,1000;30060,150;150,main,2,1,,,纳尔维克战役
+2,[b]第2章[-],阿拉曼战役,,Battlemapbg_7,3,201;202;203;204;205;206;207;208;209;210,11730;32280,100;100,main,3,2,,,阿拉曼战役
+3,[b]第3章[-],斯大林格勒战役,,Battlemapbg_10,4,301;302;303;304;305;306;307;308;309;310,7070;35630,150;150,main,4,3,,,斯大林格勒战役
+4,[b]第4章[-],列宁格勒战役,,Battlemapbg_10,5,401;402;403;404;405;406;407;408;409;410,4200;32450,150;150,main,5,4,,,列宁格勒战役
+5,[b]第5章[-],诺曼底战役,,Battlemapbg_8,6,501;502;503;504;505;506;507;508;509;510,7570;26320,100;200,main,6,5,,,诺曼底战役
+6,[b]第6章[-],柏林战役,,Battlemapbg_10,-1,601;602;603;604;605;606;607;608;609;610,6400;29550,150;150,main,7,6,,,柏林战役
+21,卡西诺战役,卡西诺战役,挑战战役，获得步兵武器碎片,Battlemapbg_8,-1,2101;2102;2103;2104;2105;2106;2107;2108;2109;2110;2111;2112,9100;29000,200;200,activity,2,1,Activity_icon_07,Common_equ_icon_08;Common_equ_icon_08;Common_equ_icon_08,卡西诺战役
+22,塞瓦斯托波尔战役,塞瓦斯托波尔战役,挑战战役，获得炮兵武器碎片,Battlemapbg_8,-1,2201;2202;2203;2204;2205;2206;2207;2208;2209;2210;2211;2212,8490;33310,200;200,activity,2,2,Activity_icon_08,Common_equ_icon_05;Common_equ_icon_05;Common_equ_icon_05,塞瓦斯托波尔战役
+23,库尔斯克战役,库尔斯克战役,挑战战役，获得重型坦克碎片,Battlemapbg_8,-1,2301;2302;2303;2304;2305;2306;2307;2308;2309;2310;2311;2312,6570;34000,200;200,activity,2,3,Activity_icon_09,Common_equ_icon_06;Common_equ_icon_06;Common_equ_icon_06,库尔斯克战役
+24,第聂伯河战役,第聂伯河战役,挑战战役，获得坦克歼击车碎片,Battlemapbg_8,-1,2401;2402;2403;2404;2405;2406;2407;2408;2409;2410;2411;2412,6760;32900,200;200,activity,2,4,Activity_icon_010,Common_equ_icon_07;Common_equ_icon_07;Common_equ_icon_07,第聂伯河战役
+31,黄金副本,黄金副本,挑战战役，获得大量黄金资源,Battlemapbg_8,-1,3101;3102;3103;3104;3105;3106;3107;3108;3109;3110;3111;3112,21470;31000,200;200,activity,2,5,Activity_icon_05,Common_equ_icon_05;Common_equ_icon_05;Common_equ_icon_05,黄金副本
+32,西点军校,西点军校,挑战战役，获得大量军官经验和声望,Battlemapbg_8,-1,3201;3202;3203;3204;3205;3206;3207;3208;3209;3210;3211;3212,9400;11800,200;200,activity,2,6,Activity_icon_11,Common_equ_icon_08;Common_equ_icon_08;Common_equ_icon_08,西点军校
+33,石油副本,石油副本,挑战战役，获得大量石油资源,Battlemapbg_8,-1,3301;3302;3303;3304;3305;3306;3307;3308;3309;3310;3311;3312,2510;35350,200;200,activity,2,7,Activity_icon_06,Common_equ_icon_06;Common_equ_icon_06;Common_equ_icon_06,石油副本
+34,金属副本,金属副本,挑战战役，获得大量金属资源,Battlemapbg_8,-1,3401;3402;3403;3404;3405;3406;3407;3408;3409;3410;3411;3412,18000;14200,200;200,activity,2,8,Activity_icon_04,Common_equ_icon_07;Common_equ_icon_07;Common_equ_icon_07,金属副本
+51,敦刻尔克,敦刻尔克,,Battlemapbg_9,52,5101,7069;27241,40;40,rookie,1,1,,,敦刻尔克
+52,卡萨布兰卡,卡萨布兰卡,,Battlemapbg_7,53,5201,11208;25118,30;40,rookie,1,2,,,卡萨布兰卡
+53,奥斯陆,奥斯陆,,Battlemapbg_10,-1,5301,4688;28701,25;50,rookie,1,3,,,奥斯陆

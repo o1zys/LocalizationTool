@@ -1,0 +1,9 @@
+﻿气泡ID,标题文字,内容,背景图片名字,icon名字,comment
+id,title,content,bg_name,icon_name,comment
+key,client,client,client,client,comment
+int,lang,lang,string,string,string
+1,关卡胜利,胜利！,Battlemapbg_2,Battlemapbg_6,
+2,升级,升级成功,Bububle_Build,Bububle_Build,
+3,${military_id} (${task_num}/${task_num_all}),${military_id} (${task_num}/${task_num_all}),Bububle_Task,Bububle_Task,${military_id} // 当前军衔名称，例“上士·三星”；${task_num} //已完成的任务（包括已领取奖励的和未领取奖励的）数量；${task_num_all}  //该军衔所有的晋升任务数量
+4,关卡失败,失败！,Battlemapbg_1,Battlemapbg_5,
+5,科技研究完成！,科技研究完成！,Bububle_Tech,Bububle_Tech,
