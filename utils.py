@@ -82,3 +82,14 @@ def get_val_line(dict_sid, dict_row, i):
         return int(dict_row[k])
     else:
         return int(dict_row[dict_sid[k]])
+
+
+# excel to csv
+def xlsx_to_csv(file):
+    workbook = xlrd.open_workbook(file)
+    table = workbook.sheet_by_index(0)
+    with open(file.replace('.xlsx', '.csv'), 'w', encoding='utf-8', newline='') as f:
+        write = csv.writer(f)
+        for row_num in range(table.nrows):
+            row_value = table.row_values(row_num)
+            write.writerow(row_value)

@@ -6,6 +6,7 @@ import error
 import utils
 import global_var as gl
 import re
+import shutil
 
 
 def execute(csv_dir, index_file, trans_file, version):
@@ -22,24 +23,22 @@ def execute(csv_dir, index_file, trans_file, version):
     if not arr_index:
         error.Error.set_code(0, "index_file is None")
         return
+    # back up old file
+    try:
+        shutil.copy(trans_file, trans_dir+'_old.xlsx')
+    except Exception as e:
+        error.Error.set_code(6, str(e))
+        return
     # read trans file, xls
     try:
-        #old_xls = openpyxl.load_workbook(output_file)
         old_xls = xlrd.open_workbook(trans_file)
     except Exception as e:
         error.Error.set_code(3, str(e))
         return
-    #old_sheet = old_xls.active
     old_sheet = old_xls.sheet_by_index(0)
-    new_xls = utils.copy_xls(old_xls)
-    new_xls.active.freeze_panes = "A2"
-    try:
-        new_xls.save(trans_dir + '_old.xlsx')
-    except Exception as e:
-        error.Error.set_code(6, str(e))
-        return
-    new_xls.remove(new_xls.active)
-    new_sheet = new_xls.create_sheet()
+    new_xls = openpyxl.Workbook()
+    new_sheet = new_xls.active
+
     # construct dict shared id, dict value
     # dict_id = {id: [sid, lang_key, designer, system]}
     dict_id = {}
@@ -53,9 +52,7 @@ def execute(csv_dir, index_file, trans_file, version):
     tar_dict_line_index = {}
     # tar_key_line = [virtual_line1 = [tar_id1, tar_id3], v_line2 = [tar_id2] ... ] for sorting of records
     tar_key_line = []
-    exist_row = []
     number_id = 0
-    new_line = old_sheet.nrows
     for i in range(old_sheet.nrows):
         if i < gl.trans_content_row:
             # read number id
@@ -73,9 +70,6 @@ def execute(csv_dir, index_file, trans_file, version):
         dict_row[ref_id] = i
         if ref_lang_key != "":
             dict_lang_key[ref_lang_key] = ref_id
-        #dict_sid[old_sheet.cell(row=i+1, column=gl.col_id+1).value] = old_sheet.cell(row=i+1, column=gl.col_sid+1).value
-        #dict_val[old_sheet.cell(row=i+1, column=gl.col_id+1).value] = old_sheet.cell(row=i+1, column=gl.col_langkey+1).value
-        #dict_row[old_sheet.cell(row=i+1, column=gl.col_id+1).value] = i
     # read csv data through index file
     for i in range(len(arr_index)):
         if i < gl.index_content_row:
@@ -174,34 +168,16 @@ def execute(csv_dir, index_file, trans_file, version):
                         mark_green_flag = False
                         if old_sheet.cell_value(dict_row[tar_id], gl.col_langkey+3) != "":
                             mark_green_flag = True
-                        #for sheet_col in range(old_sheet.ncols):
-                        #    if sheet_col <= gl.col_langkey+1:
-                        #        continue
-                        #    if old_sheet.cell_value(dict_row[tar_id], sheet_col) != "":
-                        #        mark_green_flag = True
-                        #        break
                         if mark_green_flag:
                             tar_dict_id[tar_id][3] = gl.color_fill
                         else:
                             tar_dict_id[tar_id][3] = gl.color_default
-                            #for sheet_col in range(old_sheet.ncols):
-                            #    new_sheet.cell(row=dict_row[tar_id]+1, column=sheet_col+1).fill\
-                            #            = sty.PatternFill(fill_type='solid', fgColor=gl.color_fill)
                 # 3. add new records
                 else:
                     if dict_lang_key.__contains__(tar_dict_id[tar_id][1]):
                         tar_dict_id[tar_id][2] = dict_lang_key[tar_dict_id[tar_id][1]]
                     tar_dict_id[tar_id][3] = gl.color_add
 
-                    # new_line += 1
-
-    # delete redundant records
-    #ret = [i for i in dict_row.values() if i not in exist_row]
-    #ret.sort()
-    #for del_row in range(len(ret)):
-    #    new_sheet.delete_rows(ret[del_row] - del_row+1)
-
-    #
     content_row = gl.trans_content_row
     for key_list in tar_key_line:
         for key_id in key_list:
@@ -211,8 +187,6 @@ def execute(csv_dir, index_file, trans_file, version):
                     fill_type = sty.PatternFill(fill_type='solid', fgColor=tar_dict_id[key_id][3])
                 if col == gl.col_id:
                     new_sheet.cell(content_row+1, col+1, key_id).fill = fill_type
-                elif col == gl.col_sid:
-                    new_sheet.cell(content_row+1, col+1, tar_dict_id[key_id][0]).fill = fill_type
                 elif col == gl.col_sid:
                     new_sheet.cell(content_row+1, col+1, tar_dict_id[key_id][0]).fill = fill_type
                 elif col == gl.col_nid:
@@ -230,6 +204,8 @@ def execute(csv_dir, index_file, trans_file, version):
                         new_sheet.cell(content_row+1, col+1, "Share ID").fill = fill_type
                     else:
                         tmp_old_ignore = ""
+                        if tar_dict_id[key_id][3] == gl.color_modify:
+                            tmp_old_ignore = old_sheet.cell_value(dict_row[key_id], col)
                         if tar_dict_id[key_id][2] != "":
                             tmp_old_ignore = old_sheet.cell_value(dict_row[tar_dict_id[key_id][2]], col)
                         new_sheet.cell(content_row+1, col+1, tmp_old_ignore).fill = fill_type
@@ -250,6 +226,16 @@ def execute(csv_dir, index_file, trans_file, version):
                     new_sheet.cell(content_row+1, col+1, tar_dict_id[key_id][4]).fill = fill_type
                 elif col == gl.col_sys:
                     new_sheet.cell(content_row+1, col+1, tar_dict_id[key_id][5]).fill = fill_type
+                elif col == gl.col_feature or col == gl.col_term or col == gl.col_desc or col == gl.col_instruction:
+                    if tar_dict_id[key_id][0] != "":
+                        new_sheet.cell(content_row+1, col+1, "").fill = fill_type
+                    else:
+                        tmp_old_elem = ""
+                        if tar_dict_id[key_id][3] == gl.color_modify:
+                            tmp_old_elem = old_sheet.cell_value(dict_row[key_id], col)
+                        if tar_dict_id[key_id][2] != "":
+                            tmp_old_elem = old_sheet.cell_value(dict_row[tar_dict_id[key_id][2]], col)
+                        new_sheet.cell(content_row+1, col+1, tmp_old_elem).fill = fill_type
                 elif col == gl.col_langkey:
                     new_sheet.cell(content_row+1, col+1, tar_dict_id[key_id][1]).fill = fill_type
                 elif col == gl.col_langkey+1:
@@ -326,6 +312,8 @@ def gen_task(trans_file, task_file, version):
             continue
         if trans_sheet.cell_value(i, gl.col_sid) != "":
             continue
+        if trans_sheet.cell_value(i, gl.col_ignore) != "":
+            continue
         col_index = 0
         fix_lang = []
         is_trans_finished = True
@@ -340,12 +328,12 @@ def gen_task(trans_file, task_file, version):
                     fill_type = sty.PatternFill(fill_type='solid', fgColor=gl.color_modify)
                 for m in result:
                     if m[0].lower().strip() == "fix":
-                        fix_lang.append(m[1].strip())
+                        fix_lang.append(m[1].lower().strip())
             elif j > gl.col_langkey + 1 and j != gl.col_langkey + 3:
                 if trans_sheet.cell_value(i, j) == "":
                     fill_type = sty.PatternFill(fill_type='solid', fgColor=gl.color_fill)
                     is_trans_finished = False
-                if fix_lang.__contains__(trans_sheet.cell_value(0, j)):
+                if fix_lang.__contains__("all") or fix_lang.__contains__(trans_sheet.cell_value(0, j).lower()):
                     fill_type = sty.PatternFill(fill_type='solid', fgColor=gl.color_modify)
                     is_trans_finished = False
 
@@ -410,14 +398,15 @@ def update_glossary(trans_file, glossary_file, version):
         term_id_list.append(trans_term+'+'+trans_id)
         dict_row[trans_id] = i
     # sort term by alphabetic order
-    term_id_list.sort()
+    #term_id_list.sort()
+    term_id_list = sorted(term_id_list, key=str.lower)
     # fill sheet
     row_index = 1
     for i in range(len(term_id_list)):
         id_name = term_id_list[i].split('+')[1]
         col_index = 0
         for j in range(trans_sheet.ncols):
-            if  j == gl.col_hist or j == gl.col_term or j > gl.col_langkey:
+            if j == gl.col_hist or j == gl.col_term or j > gl.col_langkey:
                 glossary_sheet.cell(row_index+1, col_index+1,
                                     trans_sheet.cell_value(dict_row[id_name], j))
                 col_index += 1
@@ -484,3 +473,10 @@ def convert(lua_dir, output_file):
     fp.write("return Table\n")
     fp.close()
 
+
+def export_csv(trans_file, glossary_file):
+    if not os.path.exists(glossary_file) or not os.path.exists(trans_file):
+        error.Error.set_code(0, "trans/glossary")
+        return
+    utils.xlsx_to_csv(trans_file)
+    utils.xlsx_to_csv(glossary_file)

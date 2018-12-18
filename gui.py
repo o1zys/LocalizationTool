@@ -7,6 +7,11 @@ import global_var as gl
 
 def get_latest():
     # set_path()
+    #if version.get() == "":
+    #    hintLabel["text"] = "必须填写Version! 请按照当前版本填，如0.6.0"
+    #    hintLabel["fg"] = "red"
+    #    return
+
     global done_flag
     if done_flag:
         hintLabel["text"] = ""
@@ -28,6 +33,11 @@ def get_latest():
 
 
 def gen_task():
+    if version.get() == "":
+        hintLabel["text"] = "必须填写Version! 请按照当前版本填，如0.6.0"
+        hintLabel["fg"] = "red"
+        return
+
     error.Error.set_code(-1, "")
     hintLabel["text"] = ""
     main.gen_task(gl.trans_file, gl.task_file, version.get())
@@ -52,6 +62,21 @@ def update_glossary():
     else:
         hintLabel["text"] = "[Error " + str(error_code) + "] " + error.Error.get_info(error_code)
         hintLabel["fg"] = "red"
+
+
+def export_csv():
+    print("export_csv")
+    error.Error.set_code(-1, "")
+    hintLabel["text"] = ""
+    main.export_csv(gl.trans_file, gl.glossary_file)
+    error_code = error.Error.get_code()
+    if error_code == -1:
+        hintLabel["text"] = "Success!"
+        hintLabel["fg"] = "green"
+    else:
+        hintLabel["text"] = "[Error " + str(error_code) + "] " + error.Error.get_info(error_code)
+        hintLabel["fg"] = "red"
+
 
 #def convert():
 #    set_path()
@@ -83,12 +108,14 @@ done_flag = False
 # root.iconbitmap(".\\icon.ico")
 
 version = StringVar()
-Label(root, text="Version (can be empty):").grid(row=1, column=0)
+Label(root, text="Version:").grid(row=1, column=0)
 Entry(root, textvariable=version).grid(row=1, column=1, sticky="nsew")
 
 Button(root, text="Get Latest", command=get_latest).grid(row=2, columnspan=3)
 Button(root, text="Generate Task", command=gen_task).grid(row=3, columnspan=4)
-Button(root, text="Update Glossary", command=update_glossary).grid(row=4, columnspan=4)
+Label(root, text="").grid(row=4, column=4)
+Button(root, text="Update Glossary", command=update_glossary).grid(row=5, columnspan=4)
+Button(root, text="Export CSV", command=export_csv).grid(row=6, columnspan=4)
 
 #Label(root, text="Lua Dir:").grid(row=6, column=0)
 #Entry(root, textvariable=lua_dir).grid(row=6, column=1, sticky="nsew")
