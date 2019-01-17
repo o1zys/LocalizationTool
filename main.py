@@ -299,7 +299,7 @@ def gen_task(trans_file, task_file, version):
     # fill title
     task_cols = 0
     for i in range(trans_sheet.ncols):
-        if i == gl.col_sid or i == gl.col_ignore or i == gl.col_designer:
+        if i == gl.col_ignore or i == gl.col_designer:
             continue
         task_sheet.cell(1, task_cols+1, trans_sheet.cell_value(0, i))
         task_cols += 1
@@ -319,7 +319,7 @@ def gen_task(trans_file, task_file, version):
         is_trans_finished = True
         for j in range(trans_sheet.ncols):
             fill_type = sty.PatternFill(fill_type=None)
-            if j == gl.col_sid or j == gl.col_ignore or j == gl.col_designer:
+            if j == gl.col_ignore or j == gl.col_designer:
                 continue
             if j == gl.col_instruction:
                 instruction = trans_sheet.cell_value(i, j)
