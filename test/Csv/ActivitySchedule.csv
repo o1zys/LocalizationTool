@@ -1,7 +1,0 @@
-活动id,活动类型,活动内容,开放类型,指定日的时间,备注
-activity_id,activity_type,activity_type_id,time_type,weekday,comment
-key,server,server,server,all,comment
-uint,string,array<int>,string,array<int>,string
-1,activity_battle,21;22;23;24,everyday,,武器碎片副本
-2,activity_battle,31;33;34,everyday,,资源副本
-3,activity_battle,32,weekday,1;2;3;4;5;6;7,军官副本

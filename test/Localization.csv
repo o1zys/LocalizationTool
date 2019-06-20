@@ -1,8 +1,10 @@
-﻿csv名,需要翻译的列,策划名,中文系统名,英文系统名,专有名字
+csv名,需要翻译的列,策划名,中文系统名,英文系统名,专有名字
 csv_name,csv_column,Designer,System,Feature,Term
 key,key,comment,comment,comment,comment
 string,string,string,string,string,string
 Arms,name,达峰2,兵种,unit,soldier type
 Bubble,title,潘潘,主界面UI,main interface,
 ConstantText,simplified_chinese,读ConstantText,读ConstantText,读ConstantText,
+CityBuilding,cb_name,ssss,建筑名,xxx,
+CityBuilding,cb_step_name,ssss,建筑描述,wwww,
 Test,test22,潘潘,主界面xxx,main sds interface,

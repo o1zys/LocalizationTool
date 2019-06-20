@@ -82,6 +82,7 @@ def execute(csv_dir, index_file, trans_file, version):
         attr = arr_index[i][gl.index_csv_col]
         designer = arr_index[i][gl.index_designer]
         system = arr_index[i][gl.index_sys]
+        print("Processing: " + csv_name + ".csv:  " + attr)
         # open csv file
         if csv_name != orig_name:
             csv_path = csv_dir + "/" + csv_name + ".csv"
@@ -101,7 +102,7 @@ def execute(csv_dir, index_file, trans_file, version):
         # find key col list
         key_col = []
         for col in range(len(arr_csv[gl.key_row])):
-            if "key" in arr_csv[gl.key_row][col].lower():
+            if "key" in arr_csv[gl.key_row][col].split(';')[0].lower():
                 key_col.append(col)
         constant_text_flag = False
         if csv_name.lower() == gl.constant_text_file:
@@ -208,6 +209,9 @@ def execute(csv_dir, index_file, trans_file, version):
                             tmp_old_ignore = old_sheet.cell_value(dict_row[key_id], col)
                         if tar_dict_id[key_id][2] != "":
                             tmp_old_ignore = old_sheet.cell_value(dict_row[tar_dict_id[key_id][2]], col)
+                        # tricky bug-fix
+                        if tmp_old_ignore == "Share ID":
+                            tmp_old_ignore = ""
                         new_sheet.cell(content_row+1, col+1, tmp_old_ignore).fill = fill_type
                 elif col == gl.col_hist:
                     if tar_dict_id[key_id][3] == gl.color_add:

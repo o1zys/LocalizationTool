@@ -1,0 +1,14 @@
+建筑ID,建筑名称,建筑描述,建筑等级,建筑类型,建筑解锁条件描述,升级所需指挥官等级,解锁条件属性,重建对话,当前步骤,总步骤,步骤名称,步骤描述,建築buff效果,建筑升级资源种类,建筑升级资源数量,初始兵级,兵级上限,建筑下一级ID,升级前置建筑ID,建筑生产队列数量,建筑默认美术配置,建筑步兵营美术配置,建筑机械营美术配置,升级获得经验值,备注,显示解锁材料,战力显示
+cb_id,cb_name,cb_des,cb_level,cb_type,cb_unlock_des,account_level,cb_unlock_buff_instance,cb_rebuild_talk,cb_step,cb_step_all,cb_step_name,cb_step_text,cb_buff,cb_up_resource_type,cb_up_resource_num,army_level_initial,army_level_up_limit,cb_next_id,cb_limit_id,cb_produce_length,cb_art,cb_art_human,cb_art_vehicle,reward_exp,comment,unlock_produce,power
+key,client,client,all,all,client,all,all,client,all,all,client,client,all,all;dict_key,all;dict_value,all,all,all,all,all,client,client,client,all,comment,client,all
+int,lang,lang,int,string,lang,int,array<int>,string,int,int,lang,lang,array<string>,array<string>,array<int>,int,int,int,array<int>,int,string,string,string,int,string,array<string>,int
+1000,指挥部废墟,指挥部,0,MainBase,,1,,cb_rebuild_talk_headquarters,0,0,重建,,,board,2,,,1001,,,Headquarters_00,,,0,指挥部,,36
+1011,应急指挥中心,指挥部,11,MainBase,,12,,,4,4,修建壕沟,[E3D1A8]提升指挥部耐久血量[-] [81EEAA]+100[-],,board;brick;cement,15;12;10,,,1012,1010,,Headquarters_03,,,1190,指挥部,,704
+2000,①号兵营废墟,一号兵营,0,Division1,,1,70001,cb_rebuild_talk_division1,0,0,重建,,,board,1,0,15,2001,,,Division1st_Infantry_00,Division1st_Infantry_00,Division1st_Machan_00,0,第一师,,15
+7017,综合医院,野战医院,17,Hospital,,18,,,5,6,加固地基,[E3D1A8]提升医院治疗部队队列[-] [81EEAA]+1[-],,board;brick;cement;steel,12;12;12;5,,,7018,7016,,Hospital_04,,,2723,野战医院,20;Oxygen;1,435
+7018,综合医院,野战医院,18,Hospital,,19,,,6,6,增设药房,[E3D1A8]提升医院治疗部队速度[-] [81EEAA]+2%[-],,board;brick;cement;steel,18;18;18;7,,,7019,7017,,Hospital_04,,,4129,野战医院,20;Oxygen;1,525
+8019,综合保障局,后勤部,19,Logistics,,20,,,0,0,扩建,[E3D1A8]解锁生产新产品 [-] [BBA36C]小型弹药补给箱[-],cb_logistics_speed_1,brick;cement;steel;pitch,12;12;6;1,,,8020,8018,2,Logistics_04,,,6181,后勤部,18;Chocolates;1,718
+8020,联合保障部,后勤部,20,Logistics,,21,,,1,6,增设库房,[E3D1A8]提升后勤部制造速度 [-] [81EEAA]2%[-],,board;brick;cement;pitch,30;30;30;3,,,8021,8019,2,Logistics_05,,,9227,后勤部,24;Can;1,941
+8021,联合保障部,后勤部,21,Logistics,,22,,,2,6,加固地基,[E3D1A8]提升后勤部制造速度 [-] [81EEAA]2%[-],cb_logistics_speed_1,board;brick;cement;pitch,40;40;40;4,,,8022,8020,2,Logistics_05,,,13784,后勤部,24;Can;1,1249
+9031,工厂中心,工程连,31,Engineering,,32,,,5,6,增设组装线,[-] [BBA36C]混凝土 [-]生产速度提升 [-] [81EEAA]100%[-],building_concrete_speed_up,brick;steel;pitch;concrete,100;100;90;40,,,9032,9030,7,Engineering_06,,,433252,工程连,,19119
+9032,工厂中心,工程连,32,Engineering,,32,,,6,6,加固地基,,building_concrete_speed_up,cement;steel;pitch;concrete,84;84;84;34,,,,9031,7,Engineering_06,,,584891,工程连,,21031

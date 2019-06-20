@@ -1,9 +1,8 @@
-﻿兵种ID,兵种名称,人口,部队槽位数量上限,图标
+兵种ID,兵种名称,人口,部队槽位数量上限,图标
 arms_id,name,population,max_amount,icon
 key,client,all,all,client
 string,lang,int,int,string
 infantry,步兵,1,12,Common_equ_icon_04
-artillery,炮兵,2,6,Common_equ_icon_01
 tank,坦克（区别翻译2）,4,3,Common_equ_icon_02
 tank_destroyer,坦歼,3,4,Common_equ_icon_03
 okok,大无畏,3,4,Common_equ_icon_03

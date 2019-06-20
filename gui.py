@@ -124,6 +124,6 @@ Button(root, text="Export CSV", command=export_csv).grid(row=6, columnspan=4)
 
 hintLabel = Label(root, text="")
 hintLabel.grid(row=8, columnspan=3)
-Label(root, text="Copyright © 2018 Oizys, All Rights Reserved").grid(row=9, columnspan=3, sticky=SW)
+Label(root, text="           -- Presented by Oizys").grid(row=9, columnspan=3, sticky=SE)
 root.mainloop()
 

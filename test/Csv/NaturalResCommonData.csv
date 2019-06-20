@@ -1,7 +1,0 @@
-资源类型,icon名字,采集item中icon名字,采集建筑id,Minimap icon名字,资源名称,comment
-res_type,icon_name,collect_item_icon_name,collect_building_id,minimap_icon_name,res_name,comment
-key,client,client,client,client,client,comment
-string,string,string,uint,string,lang,string
-metal,common_icon2,collection_18,1001,commom_icon_map21,[b]矿石[-],金属
-oil,common_icon1,collection_19,1003,commom_icon_map21,[b]石油[-],能源
-gold,common_icon11,collection_18,4035,commom_icon_map21,[b]黄金[-],黄金

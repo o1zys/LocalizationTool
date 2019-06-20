@@ -11,7 +11,7 @@ project = warpath
 field_row = 1
 # csv表key所在的行(从0开始)
 key_row = 2
-# csv表key所在的行(从0开始)
+# csv表type所在的行(从0开始)
 type_row = 3
 # csv表有内容的起始行(从0开始)
 content_row = 4

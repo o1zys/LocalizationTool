@@ -1,5 +1,0 @@
-id,初始化物品,初始化物品数量,策划配置
-id,initial_res,initial_res_num,comment
-key,server,server,comment
-int,array<string>,array<int>,string
-1,gold;metal;oil;prestige;equipment_exp;140029;140002;140068;140069;ticket_main,5000;5000;5000;100;100000;1;1;1;1;5,

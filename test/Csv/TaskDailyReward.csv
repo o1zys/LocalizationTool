@@ -1,9 +1,0 @@
-奖励ID,要求活跃度,奖励道具,奖励数量,备注
-rewad_id,point_num,reward_item,reward_num,comment
-key,all,all,all,comment
-int,int,array<string>,array<int>,string
-1,100,,,
-2,300,,,
-3,500,,,
-4,700,,,
-5,900,,,
