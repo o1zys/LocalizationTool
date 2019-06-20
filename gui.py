@@ -7,10 +7,10 @@ import global_var as gl
 
 def get_latest():
     # set_path()
-    #if version.get() == "":
-    #    hintLabel["text"] = "必须填写Version! 请按照当前版本填，如0.6.0"
-    #    hintLabel["fg"] = "red"
-    #    return
+    if version.get() == "":
+        hintLabel["text"] = "必须填写Version! 请按照当前版本填，如0.6.0"
+        hintLabel["fg"] = "red"
+        return
 
     global done_flag
     if done_flag:
@@ -124,6 +124,6 @@ Button(root, text="Export CSV", command=export_csv).grid(row=6, columnspan=4)
 
 hintLabel = Label(root, text="")
 hintLabel.grid(row=8, columnspan=3)
-Label(root, text="           -- Presented by Oizys").grid(row=9, columnspan=3, sticky=SE)
+Label(root, text="           -- Presented by Oizys (Ver.2019.6.20)").grid(row=9, columnspan=3, sticky=SE)
 root.mainloop()
 

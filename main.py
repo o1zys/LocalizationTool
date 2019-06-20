@@ -102,7 +102,7 @@ def execute(csv_dir, index_file, trans_file, version):
         # find key col list
         key_col = []
         for col in range(len(arr_csv[gl.key_row])):
-            if "key" in arr_csv[gl.key_row][col].split(';')[0].lower():
+            if "key" in arr_csv[gl.key_row][col].lower().split(';'):
                 key_col.append(col)
         constant_text_flag = False
         if csv_name.lower() == gl.constant_text_file:
